@@ -1,0 +1,11 @@
+# Hugo 生成目录，不提交
+public/
+
+# Hugo 资源缓存
+resources/_gen/
+
+# 构建锁文件
+.hugo_build.lock
+
+# macOS
+.DS_Store
