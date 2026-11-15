@@ -1,0 +1,59 @@
+/* =========================================================
+   头部布局：菜单靠右，主题切换按钮在「关于」右侧
+   ========================================================= */
+.header-nav {
+    align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--gap);
+    min-width: 0;
+}
+
+.nav-right .menu {
+    min-width: 0;
+    margin: 0;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--header-height);
+    padding: 0 0.4rem;
+    flex: none;
+}
+
+.theme-toggle svg {
+    pointer-events: none;
+}
+
+/* 窄屏：菜单可横向滚动，按钮始终贴在右侧 */
+@media (max-width: 640px) {
+    .nav-right {
+        flex: 1 1 100%;
+    }
+
+    .nav-right .menu {
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .nav-right .menu::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* =========================================================
+   主题切换：从点击处向外扩散的圆形揭示
+   ========================================================= */
+@media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+        mix-blend-mode: normal;
+    }
+}
