@@ -3,7 +3,7 @@
 #  部署到 Cloudflare Pages 后，把 baseURL 改成你的正式域名
 #  （先用 https://<项目名>.pages.dev/ 也可以）
 # ============================================================
-baseURL = "https://myblog-en2.pages.dev/"
+baseURL = "https://exuity.cc/"
 locale = "zh-CN"              # Hugo 0.158+ 用 locale 取代 languageCode
 defaultContentLanguage = "zh"
 title = "我的博客"
