@@ -118,7 +118,8 @@ body.menu-locked {
 .site-menu__close {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    width: 72px;
     height: 30px;
     font-family: "Plex Mono", ui-monospace, Menlo, monospace;
     font-size: 12px;
@@ -129,14 +130,6 @@ body.menu-locked {
     border: 0;
     padding: 0;
     cursor: none;
-}
-
-.site-menu__dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #ff3b30;
-    display: block;
 }
 
 .site-menu__close:hover { color: var(--accent); }
