@@ -45,8 +45,9 @@ pagination.pagerSize = 10
 
   # 站点标识：手绘鱼形图标 + 站点名
   [params.label]
-    icon = "images/logo-mark.png"
-    iconHeight = 40
+    icon = "images/logo-lockup.png"
+    iconHeight = 52
+    text = ""          # 图里已含 exüity 字样，不再重复显示站点名
 
   # 网站图标（文件在 static/ 下）
   [params.assets]

@@ -2,20 +2,24 @@
 <header class="header">
     <nav class="header-nav">
         <div class="logo">
-            {{- $label_text := (site.Params.label.text | default site.Title) }}
+            {{- /* 显式配置 text = "" 时表示只要 logo 图、不显示文字 */ -}}
+            {{- $label_text := site.Params.label.text }}
+            {{- if not (isset site.Params.label "text") }}{{ $label_text = site.Title }}{{ end }}
             {{- if site.Title }}
-            <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
+            <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ site.Title }} (Alt + H)">
                 {{- with site.Params.label.icon }}
                 {{- $h := site.Params.label.iconHeight | default 40 }}
                 {{- $icon := resources.Get . }}
                 {{- if $icon }}
                 {{- $icon = $icon.Resize (printf "x%d" (mul $h 2)) }}
-                <img src="{{ $icon.RelPermalink }}" alt="" height="{{ $h }}" width="{{ $icon.Width }}">
+                <img src="{{ $icon.RelPermalink }}" alt="{{ site.Title }}" height="{{ $h }}" width="{{ $icon.Width }}">
                 {{- else }}
-                <img src="{{ . | absURL }}" alt="" height="{{ $h }}">
+                <img src="{{ . | absURL }}" alt="{{ site.Title }}" height="{{ $h }}">
                 {{- end }}
-                {{- end }}
+                {{- else }}
                 {{- $label_text -}}
+                {{- end }}
+                {{- if and site.Params.label.icon $label_text }}{{ $label_text }}{{ end }}
             </a>
             {{- end }}
         </div>
