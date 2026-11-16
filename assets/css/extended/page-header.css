@@ -1,0 +1,17 @@
+/* =========================================================
+   列表页 / 标签页顶部：面包屑 + 大标题
+   视觉上去掉，但保留在 DOM 里给读屏软件和搜索引擎
+   （直接删掉 h1 会让这些页面失去主标题）
+   ========================================================= */
+.page-header {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
