@@ -24,9 +24,10 @@ pagination.pagerSize = 10
   ShowBreadCrumbs = true
   ShowPostNavLinks = true
   ShowCodeCopyButtons = true
-  ShowToc = true                 # 文章目录（可在单篇 front matter 里关掉）
+  ShowToc = false                # 文章目录（已关闭）
   TocOpen = false
   ShowWordCount = true
+  disableAnchoredHeadings = true # 标题后的 # 锚点链接
   ShowRssButtonInSectionTermList = true
   comments = false               # 想开评论见 README
 
