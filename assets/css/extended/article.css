@@ -37,7 +37,7 @@
 
 /* ---------- 正文 ---------- */
 .art .md-content {
-    padding-top: 32px;
+    padding-top: 26px;
     font-size: 16.5px;
     line-height: 1.95;
 }
@@ -46,6 +46,10 @@
     margin: 0 0 26px;
     text-align: justify;
     text-justify: inter-character;
+}
+
+.art .md-content > :first-child {
+    margin-top: 0;
 }
 
 .art .md-content p:last-child {
