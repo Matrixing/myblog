@@ -1,0 +1,76 @@
+/* =========================================================
+   配色：取自 pinghsu 主题（style.min.css）
+   日间：白底 + #707071 正文 + #04C274 主色
+   夜间：body.night → #2d2d2d 底、#393939 卡片
+   ========================================================= */
+
+:root {
+    --theme: #ffffff;              /* 页面底色 */
+    --entry: #f7f7f7;              /* 卡片 / 列表项 */
+    --primary: #222222;            /* 标题 */
+    --secondary: #767676;          /* 次要信息 */
+    --tertiary: #b8b8b8;           /* 弱化元素、滚动条 */
+    --content: #707071;            /* 正文 */
+    --code-bg: #e3e6e8;            /* 行内代码 */
+    --code-block-bg: #24273a;      /* 代码块：跟 chroma 的 Catppuccin 深色底一致 */
+    --border: #e3e6e8;
+    --accent: #04c274;             /* 主题色 */
+}
+
+:root[data-theme="dark"] {
+    --theme: #2d2d2d;
+    --entry: #393939;
+    --primary: #eeeeee;
+    --secondary: #b8b8b8;
+    --tertiary: #4a4a4a;
+    --content: #b8b8b8;
+    --code-bg: #232222;
+    --code-block-bg: #232222;
+    --border: #3a3a3a;
+    --accent: #04c274;
+}
+
+/* 列表页底色跟随主题色，而不是代码块底色 */
+.list {
+    background: var(--theme);
+}
+
+/* ---------- 主色应用 ---------- */
+::selection {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+.md-content a:not(.anchor) {
+    color: var(--content);
+}
+
+.md-content a:not(.anchor):hover {
+    color: var(--accent);
+}
+
+.menu a:hover span,
+.menu a:focus span {
+    color: var(--accent);
+}
+
+.logo a:hover {
+    color: var(--accent);
+}
+
+/* 引用块左侧竖线：pinghsu 用的是靛蓝 */
+.md-content blockquote {
+    border-inline-start: 3px solid #646eff;
+    color: #8e8787;
+}
+
+:root[data-theme="dark"] .md-content blockquote {
+    color: #9a9a9a;
+    border-inline-start-color: #646eff;
+}
+
+/* 滚动条 */
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent);
+}

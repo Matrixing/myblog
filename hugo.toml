@@ -6,7 +6,7 @@
 baseURL = "https://exuity.cc/"
 locale = "zh-CN"              # Hugo 0.158+ 用 locale 取代 languageCode
 defaultContentLanguage = "zh"
-title = "我的博客"
+title = "exüity"
 theme = "PaperMod"
 
 enableRobotsTXT = true
