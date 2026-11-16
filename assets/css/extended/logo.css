@@ -1,0 +1,25 @@
+/* =========================================================
+   站点标识：手绘鱼形 logo
+   ========================================================= */
+.logo a img {
+    height: 40px;
+    width: auto;
+    border-radius: 0;
+    /* 线条插画不需要圆角，透明底也不会挡到背景 */
+}
+
+.logo a {
+    column-gap: 0.6rem;
+}
+
+/* 深色主题下把黑线反转成白线 */
+[data-theme="dark"] .logo a img {
+    filter: invert(1);
+}
+
+/* 窄屏稍微收一点，避免挤压菜单 */
+@media (max-width: 640px) {
+    .logo a img {
+        height: 32px;
+    }
+}

@@ -43,7 +43,12 @@ pagination.pagerSize = 10
     name = "rss"
     url = "/index.xml"
 
-  # 站点图标（文件在 static/ 下）
+  # 站点标识：手绘鱼形图标 + 站点名
+  [params.label]
+    icon = "images/logo-mark.png"
+    iconHeight = 40
+
+  # 网站图标（文件在 static/ 下）
   [params.assets]
     favicon = "favicon.ico"
     favicon16x16 = "favicon-16x16.png"

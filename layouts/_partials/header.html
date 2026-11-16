@@ -6,7 +6,14 @@
             {{- if site.Title }}
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
                 {{- with site.Params.label.icon }}
-                <img src="{{ . | absURL }}" alt="" height="{{ site.Params.label.iconHeight | default 30 }}">
+                {{- $h := site.Params.label.iconHeight | default 40 }}
+                {{- $icon := resources.Get . }}
+                {{- if $icon }}
+                {{- $icon = $icon.Resize (printf "x%d" (mul $h 2)) }}
+                <img src="{{ $icon.RelPermalink }}" alt="" height="{{ $h }}" width="{{ $icon.Width }}">
+                {{- else }}
+                <img src="{{ . | absURL }}" alt="" height="{{ $h }}">
+                {{- end }}
                 {{- end }}
                 {{- $label_text -}}
             </a>
