@@ -99,23 +99,36 @@ body.menu-locked {
     border-radius: 50%;
 }
 
-/* ---------- 关闭按钮 ---------- */
-.site-menu__close {
+/* ---------- 关闭按钮：与页头 MENU 同一坐标 ---------- */
+.site-menu__bar {
     position: absolute;
-    top: 30px;
-    right: 84px;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 74px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 34px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 2;
+}
+
+.site-menu__close {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
+    gap: 8px;
+    height: 30px;
     font-family: "Plex Mono", ui-monospace, Menlo, monospace;
     font-size: 12px;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--fg);
     background: none;
     border: 0;
-    padding: 6px;
-    cursor: pointer;
-    z-index: 2;
+    padding: 0;
+    cursor: none;
 }
 
 .site-menu__dot {
@@ -123,6 +136,7 @@ body.menu-locked {
     height: 7px;
     border-radius: 50%;
     background: #ff3b30;
+    display: block;
 }
 
 .site-menu__close:hover { color: var(--accent); }
@@ -221,7 +235,7 @@ body.menu-locked {
     .site-menu__corner.tl, .site-menu__corner.bl { left: 14px; }
     .site-menu__corner.tr, .site-menu__corner.br { right: 14px; }
 
-    .site-menu__close { top: 20px; right: 52px; }
+    .site-menu__bar { height: 64px; padding: 0 20px; }
     .site-menu__clock { left: 18px; bottom: 22px; }
     .site-menu__foot { bottom: 22px; gap: 14px; font-size: 11px; }
     .site-menu__circle { width: 76vw; }
