@@ -32,8 +32,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg);
-    color: var(--fg);
+    background: #050505;
+    color: #f8f8f8;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -61,7 +61,7 @@ body.menu-locked {
     position: absolute;
     width: 44px;
     height: 44px;
-    border: 1px solid var(--fg);
+    border: 1px solid rgba(248, 248, 248, 0.85);
 }
 
 .site-menu__corner.tl { top: 24px; left: 24px; border-right: 0; border-bottom: 0; }
@@ -71,7 +71,7 @@ body.menu-locked {
 
 .site-menu__line {
     position: absolute;
-    background: var(--rule);
+    background: rgba(248, 248, 248, 0.1);
 }
 
 .site-menu__line.v {
@@ -95,42 +95,37 @@ body.menu-locked {
     width: min(50vw, 470px);
     aspect-ratio: 1;
     transform: translate(-50%, -50%);
-    border: 1px solid var(--rule);
+    border: 1px solid rgba(248, 248, 248, 0.14);
     border-radius: 50%;
 }
 
-/* ---------- 关闭按钮：与页头 MENU 同一坐标 ---------- */
-.site-menu__bar {
+/* ---------- 关闭按钮 ---------- */
+.site-menu__close {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 74px;
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 34px;
-    display: flex;
+    top: 30px;
+    right: 84px;
+    display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
+    gap: 9px;
+    font-family: "Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: #f8f8f8;
+    background: none;
+    border: 0;
+    padding: 6px;
+    cursor: pointer;
     z-index: 2;
 }
 
-.site-menu__close {
-    display: inline-flex;
-    align-items: center;
-    height: 30px;
-    font-family: "Plex Mono", ui-monospace, Menlo, monospace;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--fg);
-    background: none;
-    border: 0;
-    padding: 0;
-    cursor: none;
+.site-menu__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff3b30;
 }
 
-.site-menu__close:hover { color: var(--accent); }
+.site-menu__close:hover { color: #ffc700; }
 
 /* ---------- 左下角计时 ---------- */
 .site-menu__clock {
@@ -140,7 +135,7 @@ body.menu-locked {
     font-family: "Plex Mono", ui-monospace, Menlo, monospace;
     font-size: 12px;
     letter-spacing: 0.02em;
-    color: var(--dim);
+    color: rgba(248, 248, 248, 0.55);
     z-index: 2;
 }
 
@@ -163,7 +158,7 @@ body.menu-locked {
     letter-spacing: -0.01em;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--fg);
+    color: #f8f8f8;
     opacity: 0;
     transform: translateY(28px);
     transition: color 0.25s, opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -178,7 +173,7 @@ body.menu-locked {
 .site-menu__item:hover,
 .site-menu__item:focus-visible,
 .site-menu__item.is-active {
-    color: var(--accent);
+    color: #ffc700;
 }
 
 .site-menu__num {
@@ -193,7 +188,7 @@ body.menu-locked {
 
 .site-menu__item:hover .site-menu__num,
 .site-menu__item.is-active .site-menu__num {
-    color: var(--accent);
+    color: #ffc700;
 }
 
 /* ---------- 底部次级导航 ---------- */
@@ -206,7 +201,7 @@ body.menu-locked {
     gap: 22px;
     font-family: "Plex Mono", ui-monospace, Menlo, monospace;
     font-size: 12px;
-    color: var(--dim);
+    color: rgba(248, 248, 248, 0.55);
     z-index: 2;
 }
 
@@ -216,7 +211,7 @@ body.menu-locked {
     transition: color 0.2s;
 }
 
-.site-menu__foot a:hover { color: var(--accent); }
+.site-menu__foot a:hover { color: #ffc700; }
 
 /* ---------- 窄屏 ---------- */
 @media (max-width: 700px) {
@@ -226,7 +221,7 @@ body.menu-locked {
     .site-menu__corner.tl, .site-menu__corner.bl { left: 14px; }
     .site-menu__corner.tr, .site-menu__corner.br { right: 14px; }
 
-    .site-menu__bar { height: 64px; padding: 0 20px; }
+    .site-menu__close { top: 20px; right: 52px; }
     .site-menu__clock { left: 18px; bottom: 22px; }
     .site-menu__foot { bottom: 22px; gap: 14px; font-size: 11px; }
     .site-menu__circle { width: 76vw; }
