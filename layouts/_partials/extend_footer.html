@@ -155,3 +155,38 @@
 })();
 </script>
 {{- end }}
+
+{{- /* 自绘光标：圆点跟随，悬停可点击元素放大 */ -}}
+<script>
+(() => {
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!fine || reduced) return;
+
+    const el = document.createElement('div');
+    el.className = 'cursor';
+    el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = '<span class="cursor__dot"></span>';
+    document.body.appendChild(el);
+
+    const HOVERABLE = 'a, button, [role="button"], input, textarea, select, label, .row, .cats a';
+
+    const move = (e) => {
+        el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+        document.documentElement.classList.add('cursor-ready');
+    };
+
+    document.addEventListener('mousemove', move, { passive: true });
+
+    document.addEventListener('mouseover', (e) => {
+        if (e.target instanceof Element && e.target.closest(HOVERABLE)) el.classList.add('is-link');
+    });
+
+    document.addEventListener('mouseout', (e) => {
+        if (e.target instanceof Element && e.target.closest(HOVERABLE)) el.classList.remove('is-link');
+    });
+
+    document.addEventListener('mouseleave', () => document.documentElement.classList.remove('cursor-ready'));
+    document.addEventListener('mouseenter', () => document.documentElement.classList.add('cursor-ready'));
+})();
+</script>

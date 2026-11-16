@@ -38,11 +38,10 @@
     flex: none;
 }
 
-/* ---------- MENU 按钮：红点 + 文字（参考站的圆点） ---------- */
+/* ---------- MENU 按钮 ---------- */
 .menu-open {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
     height: 30px;
     padding: 0;
     background: none;
@@ -51,46 +50,39 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--fg);
-    cursor: pointer;
+    cursor: none;
     transition: color 0.2s;
-}
-
-.menu-open__dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #ff3b30;
-    display: block;
 }
 
 .menu-open:hover {
     color: var(--accent);
 }
 
-/* ---------- 主题切换：小方框 ---------- */
-.theme-toggle {
+/* ---------- 主题切换：一颗圆点 ---------- */
+.theme-dot {
     width: 30px;
     height: 30px;
     padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--rule);
+    display: grid;
+    place-items: center;
     background: none;
-    color: var(--fg);
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
+    border: 0;
+    cursor: none;
 }
 
-.theme-toggle svg {
-    width: 13px;
-    height: 13px;
-    pointer-events: none;
+.theme-dot span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--fg);
+    transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+                background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.theme-toggle:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+.theme-dot:hover span,
+.theme-dot:focus-visible span {
+    transform: scale(1.4);
 }
 
 /* ---------- 圆形扩散切换 ---------- */

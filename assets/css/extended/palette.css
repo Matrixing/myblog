@@ -5,13 +5,13 @@
 
 :root {
     /* 亮色：暖纸白 */
-    --bg: #f6f5f2;
-    --fg: #111111;
-    --dim: rgba(17, 17, 17, 0.52);
-    --rule: rgba(17, 17, 17, 0.14);
+    --bg: #f5f5f5;
+    --fg: #1d1e20;
+    --dim: rgba(29, 30, 32, 0.55);
+    --rule: rgba(29, 30, 32, 0.14);
     --card: #ffffff;
     --accent: #d9a900;
-    --neg: #050505;
+    --neg: #1d1e20;
 
     /* PaperMod 变量 */
     --theme: var(--bg);
@@ -20,7 +20,7 @@
     --secondary: var(--dim);
     --tertiary: var(--rule);
     --content: var(--fg);
-    --code-bg: rgba(17, 17, 17, 0.07);
+    --code-bg: rgba(29, 30, 32, 0.07);
     --code-block-bg: #14161d;
     --border: var(--rule);
     --radius: 0px;
@@ -29,13 +29,13 @@
 
 :root[data-theme="dark"] {
     /* 深色：纯黑 */
-    --bg: #050505;
-    --fg: #f2f2f2;
-    --dim: rgba(242, 242, 242, 0.52);
-    --rule: rgba(242, 242, 242, 0.16);
-    --card: #0c0c0c;
+    --bg: #1d1e20;
+    --fg: #f5f5f5;
+    --dim: rgba(245, 245, 245, 0.55);
+    --rule: rgba(245, 245, 245, 0.16);
+    --card: #26272a;
     --accent: #ffc700;
-    --neg: #f6f5f2;
+    --neg: #f5f5f5;
 
     --theme: var(--bg);
     --entry: var(--card);
@@ -43,7 +43,7 @@
     --secondary: var(--dim);
     --tertiary: var(--rule);
     --content: var(--fg);
-    --code-bg: rgba(242, 242, 242, 0.1);
+    --code-bg: rgba(245, 245, 245, 0.1);
     --code-block-bg: #14161d;
     --border: var(--rule);
     color-scheme: dark;
