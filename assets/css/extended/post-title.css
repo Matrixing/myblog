@@ -14,7 +14,14 @@
     column-gap: 0.5rem;
 }
 
-/* 小标题前的 # 依赖绝对定位，居中后仍需保留左对齐的正文 */
+/* 关键：h1 带 entry-hint-parent 类，是 flex 容器，
+   text-align 对 flex 子项无效，必须用 justify-content 居中 */
+.post-single .post-title.entry-hint-parent {
+    justify-content: center;
+    text-align: center;
+}
+
+/* 多行标题换行后也要每行居中 */
 .post-single .post-title {
     text-align: center;
 }
