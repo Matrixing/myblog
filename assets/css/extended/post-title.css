@@ -1,0 +1,20 @@
+/* =========================================================
+   文章标题居中
+   ========================================================= */
+.post-single .post-header {
+    text-align: center;
+}
+
+/* 标题下方的日期 / 字数 / 作者也一起居中，避免左右不齐 */
+.post-single .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+
+/* 小标题前的 # 依赖绝对定位，居中后仍需保留左对齐的正文 */
+.post-single .post-title {
+    text-align: center;
+}
