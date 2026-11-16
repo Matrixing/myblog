@@ -121,3 +121,37 @@
     });
 })();
 </script>
+
+{{- /* 代码块复制按钮（原主题 footer 里的脚本，接管页脚后在此保留） */ -}}
+{{- if (and (eq .Kind "page") (.Param "ShowCodeCopyButtons")) }}
+<script>
+(() => {
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const btn = document.createElement('button');
+        btn.classList.add('copy-code');
+        btn.textContent = 'copy';
+        const done = () => {
+            btn.textContent = 'copied!';
+            setTimeout(() => { btn.textContent = 'copy'; }, 2000);
+        };
+        btn.addEventListener('click', () => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                done();
+                return;
+            }
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            try { document.execCommand('copy'); done(); } catch (e) { }
+            sel.removeRange(range);
+        });
+        if (container.classList.contains('highlight')) container.appendChild(btn);
+        else codeblock.parentNode.appendChild(btn);
+    });
+})();
+</script>
+{{- end }}
