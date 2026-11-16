@@ -1,59 +1,120 @@
 /* =========================================================
-   头部布局：菜单靠右，主题切换按钮在「关于」右侧
+   页头：固定布局，右侧 MENU（红点）+ 主题切换
+   MENU 位置不再随页面内容或滚动变化
    ========================================================= */
-.header-nav {
-    align-items: center;
+
+.header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
 }
 
+.header-nav {
+    height: 74px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+/* 解除主题对内容宽度的限制，交给各页面自己的栅格 */
+.main {
+    max-width: none;
+    padding: 74px 0 0;
+}
+
+/* 右侧固定槽位：按钮宽度不随内容变化 */
 .nav-right {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: var(--gap);
-    min-width: 0;
-}
-
-.nav-right .menu {
-    min-width: 0;
-    margin: 0;
-}
-
-.theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: var(--header-height);
-    padding: 0 0.4rem;
+    gap: 18px;
     flex: none;
 }
 
+/* ---------- MENU 按钮：红点 + 文字（参考站的圆点） ---------- */
+.menu-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 30px;
+    padding: 0;
+    background: none;
+    border: 0;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.menu-open__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff3b30;
+    display: block;
+}
+
+.menu-open:hover {
+    color: var(--accent);
+}
+
+/* ---------- 主题切换：小方框 ---------- */
+.theme-toggle {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--rule);
+    background: none;
+    color: var(--fg);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
 .theme-toggle svg {
+    width: 13px;
+    height: 13px;
     pointer-events: none;
 }
 
-/* 窄屏：菜单可横向滚动，按钮始终贴在右侧 */
-@media (max-width: 640px) {
-    .nav-right {
-        flex: 1 1 100%;
-    }
-
-    .nav-right .menu {
-        overflow-x: auto;
-        scrollbar-width: none;
-    }
-
-    .nav-right .menu::-webkit-scrollbar {
-        display: none;
-    }
+.theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
-/* =========================================================
-   主题切换：从点击处向外扩散的圆形揭示
-   ========================================================= */
+/* ---------- 圆形扩散切换 ---------- */
 @media (prefers-reduced-motion: no-preference) {
     ::view-transition-old(root),
     ::view-transition-new(root) {
         animation: none;
         mix-blend-mode: normal;
+    }
+}
+
+/* ---------- 窄屏 ---------- */
+@media (max-width: 760px) {
+    .header-nav {
+        height: 64px;
+        padding: 0 20px;
+        gap: 14px;
+    }
+
+    .main {
+        padding-top: 64px;
+    }
+
+    .nav-right {
+        gap: 12px;
     }
 }

@@ -1,0 +1,13 @@
+{{- /* 编号文章行：首页与列表页共用 */ -}}
+<div class="rows">
+    {{- range $i, $p := . }}
+    <a class="row" href="{{ $p.Permalink }}">
+        <span class="row__n">{{ printf "%02d" (add $i 1) }}</span>
+        <span class="row__t">{{ $p.Title }}</span>
+        <span class="row__d">
+            {{- with $p.Params.categories }}{{ index . 0 }} · {{ end -}}
+            {{ $p.Date.Format "2006.01.02" }} · {{ $p.ReadingTime }} min
+        </span>
+    </a>
+    {{- end }}
+</div>

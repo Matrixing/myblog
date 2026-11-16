@@ -1,0 +1,176 @@
+/* =========================================================
+   首页 / 列表页：编号行列表、分类标签、首屏主张
+   ========================================================= */
+
+.home {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 62px 34px 0;
+}
+
+/* ---------- 眉标 ---------- */
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+}
+
+.eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+}
+
+/* ---------- 首屏 ---------- */
+.hero {
+    margin: 26px 0 54px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 4.6vw, 66px);
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    margin: 0;
+}
+
+.hero__lead {
+    margin-top: 20px;
+    max-width: 64ch;
+    font-size: 15px;
+    line-height: 1.95;
+    color: var(--dim);
+    text-align: justify;
+}
+
+/* ---------- 分类标签 ---------- */
+.cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 56px;
+}
+
+.cats a {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--fg);
+    border: 1px solid var(--rule);
+    padding: 7px 13px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.cats a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ---------- 分区标题 ---------- */
+.sec {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 20px;
+    padding-bottom: 10px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+}
+
+.sec--top {
+    margin-top: 34px;
+}
+
+/* ---------- 编号文章行 ---------- */
+.row {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    gap: 22px;
+    align-items: baseline;
+    padding: 26px 0;
+    border-top: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+}
+
+.rows > a:last-child {
+    border-bottom: 1px solid var(--rule);
+}
+
+.row__n {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--dim);
+    transition: color 0.2s;
+}
+
+.row__t {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    transition: color 0.2s;
+}
+
+.row__d {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    white-space: nowrap;
+}
+
+.row:hover .row__t,
+.row:hover .row__n {
+    color: var(--accent);
+}
+
+.empty {
+    padding: 40px 0;
+    color: var(--dim);
+    font-size: 14px;
+}
+
+/* ---------- 窄屏 ---------- */
+@media (max-width: 760px) {
+    .home {
+        padding: 40px 20px 0;
+    }
+
+    .hero {
+        margin: 18px 0 36px;
+    }
+
+    .hero__lead {
+        font-size: 14px;
+        line-height: 1.9;
+    }
+
+    .cats {
+        margin-bottom: 36px;
+    }
+
+    .row {
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 12px;
+        padding: 20px 0;
+    }
+
+    .row__t {
+        font-size: 20px;
+    }
+
+    .row__d {
+        grid-column: 2;
+        margin-top: 8px;
+        white-space: normal;
+    }
+}

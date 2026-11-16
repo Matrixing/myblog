@@ -26,7 +26,7 @@
 
         <div class="nav-right">
             <button id="menu-open" class="menu-open" type="button"
-                    aria-expanded="false" aria-controls="site-menu">MENU</button>
+                    aria-expanded="false" aria-controls="site-menu"><span class="menu-open__dot" aria-hidden="true"></span>MENU</button>
 
             {{- if (not site.Params.disableThemeToggle) }}
             <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
@@ -50,6 +50,8 @@
             {{- end }}
         </div>
     </nav>
+
+</header>
 
 {{- /* 全屏分类菜单：复刻 like.ava-case.com 的排版 */ -}}
 <div id="site-menu" class="site-menu" role="dialog" aria-modal="true" aria-label="文章分类">
@@ -86,4 +88,4 @@
         <a href="{{ "index.xml" | relLangURL }}">RSS</a>
     </div>
 </div>
-</header>
+

@@ -1,0 +1,42 @@
+{{- define "main" }}
+
+<article class="post-single art">
+    <header class="art__head">
+        <div class="eyebrow">
+            <span>{{ with .Params.categories }}{{ index . 0 }}{{ else }}{{ .Section }}{{ end }}</span>
+        </div>
+
+        <h1 class="art__title">{{ .Title }}</h1>
+
+        <div class="art__meta">
+            <span>{{ .Date.Format "2006.01.02" }}</span>
+            <span>{{ .ReadingTime }} min</span>
+            <span>{{ .WordCount }} 字</span>
+            {{- with .Params.author }}<span>{{ . }}</span>{{ end }}
+        </div>
+    </header>
+
+    {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+    {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
+
+    <div class="post-content md-content">
+        {{- .Content }}
+    </div>
+
+    <footer class="art__foot">
+        {{- with .PrevInSection }}
+        <a class="art__nav" href="{{ .Permalink }}">
+            <b>Earlier</b>
+            <span>{{ .Title }}</span>
+        </a>
+        {{- else }}<span></span>{{ end }}
+        {{- with .NextInSection }}
+        <a class="art__nav art__nav--next" href="{{ .Permalink }}">
+            <b>Later</b>
+            <span>{{ .Title }}</span>
+        </a>
+        {{- end }}
+    </footer>
+</article>
+
+{{- end }}
