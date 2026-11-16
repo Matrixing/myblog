@@ -3,7 +3,7 @@ title: "开始写博客了"
 date: 2026-11-15T02:45:00+08:00
 draft: false
 tags: ["Hugo", "Cloudflare"]
-categories: ["折腾"]
+categories: ["Technology"]
 summary: "用 Hugo + Cloudflare Pages 搭好了这个博客，记录一下第一篇和写作方式。"
 ---
 

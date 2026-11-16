@@ -25,20 +25,8 @@
         </div>
 
         <div class="nav-right">
-            {{- $page_url := .Permalink | absLangURL }}
-            <ul id="menu" class="menu">
-                {{- range site.Menus.main }}
-                {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL)) | absLangURL }}
-                <li>
-                    <a href="{{ .URL | absLangURL }}"
-                       title="{{ .Title | default .Name }}">
-                        <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
-                            {{- .Pre }}{{- .Name -}}{{ .Post }}
-                        </span>
-                    </a>
-                </li>
-                {{- end }}
-            </ul>
+            <button id="menu-open" class="menu-open" type="button"
+                    aria-expanded="false" aria-controls="site-menu">MENU</button>
 
             {{- if (not site.Params.disableThemeToggle) }}
             <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
@@ -62,4 +50,40 @@
             {{- end }}
         </div>
     </nav>
+
+{{- /* 全屏分类菜单：复刻 like.ava-case.com 的排版 */ -}}
+<div id="site-menu" class="site-menu" role="dialog" aria-modal="true" aria-label="文章分类">
+    <div class="site-menu__deco" aria-hidden="true">
+        <span class="site-menu__corner tl"></span>
+        <span class="site-menu__corner tr"></span>
+        <span class="site-menu__corner bl"></span>
+        <span class="site-menu__corner br"></span>
+        <span class="site-menu__line v"></span>
+        <span class="site-menu__line h"></span>
+        <span class="site-menu__circle"></span>
+    </div>
+
+    <button id="menu-close" class="site-menu__close" type="button">
+        <span class="site-menu__dot" aria-hidden="true"></span>CLOSE
+    </button>
+
+    <span class="site-menu__clock" id="menu-clock" aria-hidden="true">00:00:00:00</span>
+
+    <nav class="site-menu__list">
+        {{- range $i, $c := site.Params.catMenu }}
+        <a class="site-menu__item" style="--i:{{ $i }}" href="{{ printf "/categories/%s/" ($c.name | urlize) | relLangURL }}"
+           data-cat="{{ $c.name | urlize }}">
+            <span class="site-menu__num">{{ printf "%02d" (add $i 1) }}</span>
+            <span class="site-menu__label">{{ $c.name }}</span>
+        </a>
+        {{- end }}
+    </nav>
+
+    <div class="site-menu__foot">
+        <a href="{{ "/posts/" | relLangURL }}">文章</a>
+        <a href="{{ "/tags/" | relLangURL }}">标签</a>
+        <a href="{{ "/about/" | relLangURL }}">关于</a>
+        <a href="{{ "index.xml" | relLangURL }}">RSS</a>
+    </div>
+</div>
 </header>

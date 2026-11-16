@@ -44,6 +44,19 @@ pagination.pagerSize = 10
     name = "rss"
     url = "/index.xml"
 
+
+# ---------------- 分类菜单（右上角 MENU 里的五项） ----------------
+[[params.catMenu]]
+  name = "Travel"
+[[params.catMenu]]
+  name = "Waterproof"
+[[params.catMenu]]
+  name = "Literature"
+[[params.catMenu]]
+  name = "Technology"
+[[params.catMenu]]
+  name = "History"
+
   # 站点标识：手绘鱼形图标 + 站点名
   [params.label]
     icon = "images/logo-lockup.png"

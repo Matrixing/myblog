@@ -65,3 +65,59 @@
 })();
 </script>
 {{- end }}
+
+{{- /* 全屏分类菜单交互 */ -}}
+<script>
+(() => {
+    const menu = document.getElementById('site-menu');
+    const openBtn = document.getElementById('menu-open');
+    const closeBtn = document.getElementById('menu-close');
+    const clock = document.getElementById('menu-clock');
+    if (!menu || !openBtn || !closeBtn) return;
+
+    const pad = (n) => String(n).padStart(2, '0');
+    let timer = null;
+
+    function tick() {
+        if (!clock) return;
+        const d = new Date();
+        const frames = Math.floor((d.getMilliseconds() / 1000) * 25);
+        clock.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}:${pad(frames)}`;
+    }
+
+    function open() {
+        menu.classList.add('is-open');
+        document.body.classList.add('menu-locked');
+        openBtn.setAttribute('aria-expanded', 'true');
+        tick();
+        timer = setInterval(tick, 40);
+        closeBtn.focus({ preventScroll: true });
+    }
+
+    function close() {
+        menu.classList.remove('is-open');
+        document.body.classList.remove('menu-locked');
+        openBtn.setAttribute('aria-expanded', 'false');
+        if (timer) { clearInterval(timer); timer = null; }
+        openBtn.focus({ preventScroll: true });
+    }
+
+    openBtn.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('is-open')) close();
+    });
+
+    menu.addEventListener('click', (e) => {
+        if (e.target === menu) close();
+    });
+
+    // 当前所在分类高亮
+    const path = location.pathname;
+    menu.querySelectorAll('.site-menu__item').forEach((a) => {
+        const slug = a.dataset.cat;
+        if (slug && path.indexOf('/categories/' + slug) !== -1) a.classList.add('is-active');
+    });
+})();
+</script>
