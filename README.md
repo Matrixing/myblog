@@ -1,6 +1,8 @@
 # myblog
 
-Hugo + PaperMod 的静态博客，部署在 Cloudflare Pages。
+Hugo + piska 主题的静态博客，部署在 Cloudflare Pages。
+
+> `piska` 是本仓库自带的定制主题：由 PaperMod 演化而来，现在已重写为独立主题（封面式首页、全屏分类菜单、Anton 大字排版）。
 
 ## 目录结构
 
@@ -12,7 +14,7 @@ myblog/
 │   └── posts/
 │       ├── _index.md          # 文章列表页
 │       └── hello-world.md     # 示例文章，可删
-├── themes/PaperMod/           # 主题（已随仓库提交，不依赖 submodule）
+├── themes/piska/              # 主题（已随仓库提交，不依赖 submodule）
 ├── archetypes/default.md      # 新建文章时的模板
 └── .gitignore
 ```
@@ -24,7 +26,7 @@ hugo server -D          # http://localhost:1313，-D 表示包含草稿
 hugo --gc --minify      # 生产构建，输出到 public/
 ```
 
-本机 Hugo 版本：`v0.162.1+extended`（PaperMod 要求 ≥ 0.158）。
+本机 Hugo 版本：`v0.162.1+extended`（主题要求 ≥ 0.158）。
 
 ## 写文章
 
@@ -75,7 +77,7 @@ hugo new content posts/我的文章.md
 | --- | --- |
 | 构建报 `TOCSS: ... not available in your current Hugo version` | `HUGO_VERSION` 没设或版本太低，改成 `0.162.1` |
 | 构建报 `unexpected EOF when executing "sass"` | Hugo 升到了 0.170+（取消了 extended 版，改用 Dart Sass）。退回 `0.162.1`，或本地 `brew unpin hugo` 时同步改云端版本 |
-| 线上样式丢失 | 检查 `themes/PaperMod` 是否已提交进仓库 |
+| 线上样式丢失 | 检查 `themes/piska` 是否已提交进仓库 |
 | 改了页面没更新 | 看 Pages 的 Deployments，确认推送的是 `main` 分支 |
 
 ## 可选增强
@@ -84,12 +86,21 @@ hugo new content posts/我的文章.md
 - **访问统计**：Cloudflare Dashboard → Web Analytics → 添加站点，拿到 JS 片段后放进 `layouts/partials/extend_head.html`（新建该文件）。
 - **搜索**：已启用（`[outputs] home` 里的 `JSON`），点右上角搜索图标即可。
 
-## 更新主题
+## 主题
 
-主题是直接提交进仓库的（vendored），没有用 submodule。更新时：
+主题 `themes/piska` 直接提交进仓库（vendored），没有用 submodule。
 
-```bash
-curl -sL https://codeload.github.com/adityatelange/hugo-PaperMod/tar.gz/refs/heads/master -o /tmp/pm.tgz
-tar xzf /tmp/pm.tgz -C /tmp && rm -rf themes/PaperMod && mv /tmp/hugo-PaperMod-master themes/PaperMod
-hugo --gc --minify   # 确认没报错再提交
-```
+它由 [PaperMod](https://github.com/adityatelange/hugo-PaperMod) 演化而来，但模板与样式已大批改写
+（封面式首页、全屏分类菜单、`assets/css/extended/` 下的设计令牌），**不要再整包覆盖上游更新**，
+否则会丢掉这些定制。需要参考上游写法时，只挑单个文件对照修改。
+
+## 页面结构
+
+| 路径 | 说明 |
+| --- | --- |
+| `/` | 封面：标题、长文、框线与圆心；文章入口在右上角 MENU |
+| `/categories/<slug>/` | 分类文章列表（编号行） |
+| `/posts/<slug>/` | 文章页 |
+| `/about/` | 关于页 |
+
+首页隐藏了全站页脚（页脚信息写在封面内部），其余页面保留页脚。

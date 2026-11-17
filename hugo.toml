@@ -7,7 +7,7 @@ baseURL = "https://exuity.cc/"
 locale = "zh-CN"              # Hugo 0.158+ 用 locale 取代 languageCode
 defaultContentLanguage = "zh"
 title = "exüity"
-theme = "PaperMod"
+theme = "piska"
 
 enableRobotsTXT = true
 hasCJKLanguage = true     # 中文摘要按字数截断，而不是按空格
@@ -91,7 +91,7 @@ pagination.pagerSize = 10
     weight = 30
 
 # ---------------- 输出格式 ----------------
-# JSON 用于 PaperMod 的站内搜索
+# JSON 用于站内搜索
 [outputs]
   home = ["HTML", "RSS", "JSON"]
 

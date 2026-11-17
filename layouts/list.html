@@ -1,24 +1,27 @@
 {{- define "main" }}
 
 {{- if .IsHome }}
-{{- /* ---------------- 首页 ---------------- */ -}}
-<div class="home">
-    <div class="eyebrow">
-        <span>Personal blog</span>
-        <span>{{ now.Year }}</span>
+{{- /* ---------------- 首页：封面 ---------------- */ -}}
+<div class="cover">
+    <div class="cover__frame" aria-hidden="true">
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+        <span class="line v"></span>
+        <span class="circle"></span>
     </div>
 
-    <div class="hero">
+    <div class="cover__body">
+        <div class="eyebrow"><span>Personal blog</span><span>{{ now.Year }}</span></div>
         <h1>君子豹变，<br>其文蔚也。</h1>
-        <p class="hero__lead">一个人应该能够换尿布，策划战争，杀猪，开船，设计房子，写十四行诗，结算账户，砌墙，接脱臼的骨头，安慰濒死的人，服从命令，发布命令，携手合作，独立行动，解数学方程，分析新问题，铲粪，电脑编程，做出可口的饭，善打架，勇敢地死去。只有昆虫才专业化。</p>
+        <p class="cover__lead">一个人应该能够换尿布，策划战争，杀猪，开船，设计房子，写十四行诗，结算账户，砌墙，接脱臼的骨头，安慰濒死的人，服从命令，发布命令，携手合作，独立行动，解数学方程，分析新问题，铲粪，电脑编程，做出可口的饭，善打架，勇敢地死去。只有昆虫才专业化。</p>
     </div>
 
-    {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
-    <div class="sec">
-        <span>Latest / 最新文章</span>
-        <span>{{ printf "%02d entries" (len $pages) }}</span>
+    <div class="cover__meta">
+        <span>&copy; {{ now.Year }} {{ site.Title }}</span>
+        <span><a href="{{ "index.xml" | relLangURL }}">RSS</a> · <a href="https://github.com/Matrixing" rel="noopener" target="_blank">GitHub</a></span>
     </div>
-    {{- partial "rows.html" $pages }}
 </div>
 
 {{- else }}
