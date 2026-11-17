@@ -48,30 +48,6 @@
     text-align: justify;
 }
 
-/* ---------- 分类标签 ---------- */
-.cats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 56px;
-}
-
-.cats a {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--fg);
-    border: 1px solid var(--rule);
-    padding: 7px 13px;
-    transition: color 0.2s, border-color 0.2s;
-}
-
-.cats a:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-}
-
 /* ---------- 分区标题 ---------- */
 .sec {
     display: flex;
@@ -152,10 +128,6 @@
     .hero__lead {
         font-size: 14px;
         line-height: 1.9;
-    }
-
-    .cats {
-        margin-bottom: 36px;
     }
 
     .row {
