@@ -71,9 +71,10 @@
 (() => {
     const menu = document.getElementById('site-menu');
     const openBtn = document.getElementById('menu-open');
-    const closeBtn = document.getElementById('menu-close');
+    const label = document.querySelector('.menu-open__label');
+    const header = document.querySelector('.header');
     const clock = document.getElementById('menu-clock');
-    if (!menu || !openBtn || !closeBtn) return;
+    if (!menu || !openBtn) return;
 
     const pad = (n) => String(n).padStart(2, '0');
     let timer = null;
@@ -89,21 +90,30 @@
         menu.classList.add('is-open');
         document.body.classList.add('menu-locked');
         openBtn.setAttribute('aria-expanded', 'true');
+        openBtn.setAttribute('aria-label', '关闭分类菜单');
+        if (label) label.textContent = 'CLOSE';
+        if (header) header.classList.add('is-open');
         tick();
         timer = setInterval(tick, 40);
-        closeBtn.focus({ preventScroll: true });
+        openBtn.focus({ preventScroll: true });
     }
 
     function close() {
         menu.classList.remove('is-open');
         document.body.classList.remove('menu-locked');
         openBtn.setAttribute('aria-expanded', 'false');
+        openBtn.setAttribute('aria-label', '打开分类菜单');
+        if (label) label.textContent = 'MENU';
+        if (header) header.classList.remove('is-open');
         if (timer) { clearInterval(timer); timer = null; }
         openBtn.focus({ preventScroll: true });
     }
 
-    openBtn.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
+    // 同一个按钮负责开与关
+    openBtn.addEventListener('click', () => {
+        if (menu.classList.contains('is-open')) close();
+        else open();
+    });
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && menu.classList.contains('is-open')) close();

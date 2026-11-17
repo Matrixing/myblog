@@ -5,6 +5,14 @@
 
 /* ---------- 头部 MENU 按钮 ---------- */
 .menu-open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 9px;
+    /* 固定宽度：MENU(4 字) 与 CLOSE(5 字) 共用同一个盒子，坐标不漂移 */
+    width: 70px;
+    height: 30px;
+    padding: 0 6px;
     font-family: "Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 13px;
     line-height: 1;
@@ -13,10 +21,13 @@
     color: var(--primary);
     background: none;
     border: 0;
-    padding: 0 0.4rem;
-    height: var(--header-height);
     cursor: pointer;
     transition: color 0.2s;
+}
+
+.menu-open__label {
+    display: inline-block;
+    white-space: nowrap;
 }
 
 .menu-open:hover,
@@ -98,34 +109,6 @@ body.menu-locked {
     border: 1px solid rgba(248, 248, 248, 0.14);
     border-radius: 50%;
 }
-
-/* ---------- 关闭按钮 ---------- */
-.site-menu__close {
-    position: absolute;
-    top: 30px;
-    right: 84px;
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    font-family: "Plex Mono", ui-monospace, Menlo, monospace;
-    font-size: 12px;
-    letter-spacing: 0.02em;
-    color: #f8f8f8;
-    background: none;
-    border: 0;
-    padding: 6px;
-    cursor: pointer;
-    z-index: 2;
-}
-
-.site-menu__dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #ff3b30;
-}
-
-.site-menu__close:hover { color: #ffc700; }
 
 /* ---------- 左下角计时 ---------- */
 .site-menu__clock {
@@ -221,9 +204,49 @@ body.menu-locked {
     .site-menu__corner.tl, .site-menu__corner.bl { left: 14px; }
     .site-menu__corner.tr, .site-menu__corner.br { right: 14px; }
 
-    .site-menu__close { top: 20px; right: 52px; }
     .site-menu__clock { left: 18px; bottom: 22px; }
     .site-menu__foot { bottom: 22px; gap: 14px; font-size: 11px; }
     .site-menu__circle { width: 76vw; }
     .site-menu__item { font-size: clamp(40px, 13vw, 72px); }
+}
+
+/* =========================================================
+   打开态：页头浮在遮罩之上，MENU 原地变成 CLOSE
+   ========================================================= */
+.header.is-open {
+    z-index: 70;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent;
+}
+
+.header.is-open .header-nav {
+    position: relative;
+    z-index: 2;
+}
+
+.header.is-open .logo a img {
+    filter: invert(1);
+}
+
+.header.is-open .menu-open {
+    color: #f8f8f8;
+}
+
+.header.is-open .theme-toggle {
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+/* 遮罩位于页头层叠上下文内部，压在 nav 之下 */
+.site-menu {
+    z-index: 1;
+}
+
+/* 焦点环：键盘可见，鼠标点击不显示粗框 */
+.menu-open:focus { outline: none; }
+.menu-open:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
 }
