@@ -64,7 +64,8 @@ body.menu-locked {
 /* ---------- 装饰层 ---------- */
 .site-menu__deco {
     position: absolute;
-    inset: 0;
+    /* 与正文 1180 栏对齐：框线右缘 = 内容右缘，正好贴住 CLOSE */
+    inset: 16px max(24px, calc(50% - 556px));
     pointer-events: none;
 }
 
@@ -75,10 +76,10 @@ body.menu-locked {
     border: 1px solid rgba(248, 248, 248, 0.85);
 }
 
-.site-menu__corner.tl { top: 24px; left: 24px; border-right: 0; border-bottom: 0; }
-.site-menu__corner.tr { top: 24px; right: 24px; border-left: 0; border-bottom: 0; }
-.site-menu__corner.bl { bottom: 24px; left: 24px; border-right: 0; border-top: 0; }
-.site-menu__corner.br { bottom: 24px; right: 24px; border-left: 0; border-top: 0; }
+.site-menu__corner.tl { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.site-menu__corner.tr { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+.site-menu__corner.bl { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+.site-menu__corner.br { bottom: 0; right: 0; border-left: 0; border-top: 0; }
 
 .site-menu__line {
     position: absolute;
@@ -113,7 +114,8 @@ body.menu-locked {
 /* ---------- 左下角计时 ---------- */
 .site-menu__clock {
     position: absolute;
-    left: 30px;
+    /* 跟着框线走：位于框内左下角 */
+    left: calc(max(24px, calc(50% - 556px)) + 22px);
     bottom: 34px;
     font-family: "Plex Mono", ui-monospace, Menlo, monospace;
     font-size: 12px;
@@ -175,26 +177,27 @@ body.menu-locked {
 }
 
 /* ---------- 底部次级导航 ---------- */
-.site-menu__foot {
+/* ---------- 底部刻度指示（3..2..1..▾..1..2..3） ---------- */
+.site-menu__indicator {
     position: absolute;
     left: 50%;
-    bottom: 34px;
+    bottom: 22px;
     transform: translateX(-50%);
-    display: flex;
-    gap: 22px;
+    display: inline-flex;
+    align-items: center;
     font-family: "Plex Mono", ui-monospace, Menlo, monospace;
     font-size: 12px;
-    color: rgba(248, 248, 248, 0.55);
+    letter-spacing: 0.04em;
+    color: rgba(248, 248, 248, 0.8);
     z-index: 2;
+    white-space: nowrap;
 }
 
-.site-menu__foot a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.2s;
+.site-menu__indicator svg {
+    display: block;
+    margin: 0 3px;
+    color: #f8f8f8;
 }
-
-.site-menu__foot a:hover { color: #ffc700; }
 
 /* ---------- 窄屏 ---------- */
 @media (max-width: 700px) {
@@ -204,8 +207,8 @@ body.menu-locked {
     .site-menu__corner.tl, .site-menu__corner.bl { left: 14px; }
     .site-menu__corner.tr, .site-menu__corner.br { right: 14px; }
 
-    .site-menu__clock { left: 18px; bottom: 22px; }
-    .site-menu__foot { bottom: 22px; gap: 14px; font-size: 11px; }
+    .site-menu__clock { display: none; }   /* 窄屏隐藏计时，避免与刻度重叠 */
+    .site-menu__indicator { bottom: 16px; font-size: 11px; }
     .site-menu__circle { width: 76vw; }
     .site-menu__item { font-size: clamp(40px, 13vw, 72px); }
 }
@@ -226,8 +229,9 @@ body.menu-locked {
     z-index: 2;
 }
 
-.header.is-open .logo a img {
-    filter: invert(1);
+.header.is-open .logo {
+    /* 打开菜单时不显示 logo，位置留给 CLOSE 附近的框线 */
+    visibility: hidden;
 }
 
 .header.is-open .menu-open {
@@ -235,8 +239,8 @@ body.menu-locked {
 }
 
 .header.is-open .theme-toggle {
-    opacity: 0.25;
-    pointer-events: none;
+    /* 保留占位以保证 CLOSE 坐标不变，只是不可见 */
+    visibility: hidden;
 }
 
 /* 遮罩位于页头层叠上下文内部，压在 nav 之下 */
@@ -248,5 +252,5 @@ body.menu-locked {
 .menu-open:focus { outline: none; }
 .menu-open:focus-visible {
     outline: 1px solid currentColor;
-    outline-offset: 4px;
+    outline-offset: 1px;
 }

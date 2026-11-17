@@ -77,11 +77,13 @@
         {{- end }}
     </nav>
 
-    <div class="site-menu__foot">
-        <a href="{{ "/posts/" | relLangURL }}">文章</a>
-        <a href="{{ "/tags/" | relLangURL }}">标签</a>
-        <a href="{{ "/about/" | relLangURL }}">关于</a>
-        <a href="{{ "index.xml" | relLangURL }}">RSS</a>
+    <div class="site-menu__indicator" aria-hidden="true">
+        <span class="site-menu__marks">3..2..1..</span>
+        <svg width="10" height="26" viewBox="0 0 10 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0L10 0L10 10.3158L5 14L0 10.3158L0 0Z" fill="currentColor"></path>
+            <path d="M5 18L5 26" stroke="currentColor" stroke-width="0.71148"></path>
+        </svg>
+        <span class="site-menu__marks">..1..2..3</span>
     </div>
 </div>
 
