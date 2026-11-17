@@ -70,7 +70,7 @@ pagination.pagerSize = 10
     favicon32x32 = "favicon-32x32.png"
     apple_touch_icon = "apple-touch-icon.png"
     safari_pinned_tab = "safari-pinned-tab.svg"
-    theme_color = "#2e2e33"
+    theme_color = "#0C0B0A"
 
 # ---------------- 导航菜单 ----------------
 [menu]

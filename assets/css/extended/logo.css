@@ -14,7 +14,8 @@
 
 /* 深色主题下把黑线反转成白线 */
 [data-theme="dark"] .logo a img {
-    filter: invert(1);
+    /* 反白后带一点暖调，贴近 #EDE6D8 */
+    filter: invert(1) sepia(0.18) saturate(1.15) brightness(0.97);
 }
 
 /* 窄屏稍微收一点，避免挤压菜单 */
